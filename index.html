@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TCP/IP Protocol Suite</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <span class="brand">TCP/IP</span>
+  <a href="#overview">Overview</a>
+  <a href="#protocols">Protocols</a>
+  <a href="#handshake">Handshake</a>
+  <a href="#encapsulation">Encapsulation</a>
+  <a href="#tools">Tools</a>
+  <a href="#quiz">Quiz</a>
+  <a href="#compare">Compare</a>
+  <a href="#log">Live log</a>
+  <button id="theme" class="ghost" title="Toggle light/dark">Theme</button>
+</nav>
+
+<header class="hero">
+  <img class="avatar" src="images/me.jpg" alt="Student photo" onerror="this.remove()">
+  <h1>The TCP/IP Protocol Suite</h1>
+  <p>The family of protocols that powers the internet.</p>
+  <div class="student">Reg No: <b id="reg">...</b> &nbsp;|&nbsp; Name: <b id="name">...</b></div>
+</header>
+
+<main>
+
+  <section id="overview">
+    <h2>Overview</h2>
+    <p>TCP/IP is a layered set of protocols developed in the 1970s for ARPANET by Vint Cerf and Bob Kahn.
+       It defines how data is addressed, split into packets, transmitted, routed and received. Each layer
+       does one job and relies on the layer below, so layers can be improved independently.</p>
+    <img class="pic" src="images/tcpip.png" alt="TCP/IP layers diagram" onerror="this.remove()">
+    <div class="stats">
+      <div><b>4</b><span>layers</span></div>
+      <div><b id="count">0</b><span>protocols listed</span></div>
+      <div><b id="reqs">0</b><span>requests served</span></div>
+      <div><b id="uptime">0s</b><span>server uptime</span></div>
+    </div>
+
+    <h3>Follow a packet through the layers</h3>
+    <div class="stack">
+      <div class="layer" style="--c:#38bdf8"><b>4. Application</b><span>Data - HTTP, DNS, SMTP, SSH</span></div>
+      <div class="layer" style="--c:#34d399"><b>3. Transport</b><span>Segment / Datagram - TCP, UDP</span></div>
+      <div class="layer" style="--c:#fbbf24"><b>2. Internet</b><span>Packet - IP, ICMP, ARP</span></div>
+      <div class="layer" style="--c:#f472b6"><b>1. Network Access</b><span>Frame / Bits - Ethernet, Wi-Fi</span></div>
+    </div>
+    <p id="journeyCap" class="caption">Press the button to watch data travel down the sender and up the receiver.</p>
+    <button id="journeyBtn">Send packet</button>
+  </section>
+
+  <section id="protocols">
+    <h2>Protocol Explorer</h2>
+    <p>Search or filter, then click a card for details. Tip: press <kbd>/</kbd> to jump to search.</p>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search protocol, port or keyword...">
+      <div id="filters"></div>
+    </div>
+    <div id="grid" class="grid"></div>
+    <p id="empty" class="hidden">No protocol matches your search.</p>
+  </section>
+
+  <section id="handshake">
+    <h2>TCP Connection Lifecycle</h2>
+    <div class="tabs">
+      <button id="tabOpen" class="chip active">Open: 3-way handshake</button>
+      <button id="tabClose" class="chip">Close: 4-way teardown</button>
+    </div>
+    <div class="hs">
+      <div class="host">Client</div>
+      <div id="hsSteps" class="hsSteps"></div>
+      <div class="host">Server</div>
+    </div>
+    <button id="hsBtn">Next step</button>
+    <button id="hsReset" class="ghost">Reset</button>
+  </section>
+
+  <section id="encapsulation">
+    <h2>Data Encapsulation</h2>
+    <p>Each layer wraps the data from the layer above with its own header. Type a message to see it.</p>
+    <input id="msg" type="text" value="Hello, server!" maxlength="40">
+    <div id="encap" class="encap"></div>
+  </section>
+
+  <section id="tools">
+    <h2>Network Tools (powered by the Python server)</h2>
+    <div class="toolgrid">
+
+      <div class="tool">
+        <h3>Subnet calculator</h3>
+        <div class="row"><input id="subIp" value="192.168.10.37"><input id="subPrefix" type="number" min="0" max="128" value="26" class="short"></div>
+        <button id="subBtn">Calculate</button>
+        <div id="subOut" class="out"></div>
+      </div>
+
+      <div class="tool">
+        <h3>DNS lookup</h3>
+        <div class="row"><input id="dnsHost" value="localhost"></div>
+        <button id="dnsBtn">Resolve</button>
+        <div id="dnsOut" class="out"></div>
+      </div>
+
+      <div class="tool">
+        <h3>Port lookup</h3>
+        <div class="row"><input id="portNum" type="number" min="0" max="65535" value="443"></div>
+        <button id="portBtn">Look up</button>
+        <div id="portOut" class="out"></div>
+      </div>
+
+      <div class="tool">
+        <h3>Request header inspector</h3>
+        <p class="muted">See exactly what your browser sent to this server.</p>
+        <button id="hdrBtn">Inspect my request</button>
+        <div id="hdrOut" class="out"></div>
+      </div>
+
+      <div class="tool wide">
+        <h3>Ping: round-trip time to this server</h3>
+        <button id="pingBtn">Start</button>
+        <span id="pingStat" class="muted"></span>
+        <canvas id="pingCanvas" width="800" height="170"></canvas>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="quiz">
+    <h2>Test Yourself</h2>
+    <div id="quizBox" class="tool"></div>
+  </section>
+
+  <section id="compare">
+    <h2>Comparison Tables</h2>
+    <h3>OSI model vs TCP/IP model</h3>
+    <table>
+      <tr><th>OSI (7 layers)</th><th>TCP/IP (4 layers)</th><th>Example</th></tr>
+      <tr><td>Application, Presentation, Session</td><td>Application</td><td>HTTP, DNS, TLS</td></tr>
+      <tr><td>Transport</td><td>Transport</td><td>TCP, UDP</td></tr>
+      <tr><td>Network</td><td>Internet</td><td>IP, ICMP</td></tr>
+      <tr><td>Data Link, Physical</td><td>Network Access</td><td>Ethernet, Wi-Fi</td></tr>
+    </table>
+    <h3>TCP vs UDP</h3>
+    <table>
+      <tr><th>Feature</th><th>TCP</th><th>UDP</th></tr>
+      <tr><td>Connection</td><td>Connection-oriented</td><td>Connectionless</td></tr>
+      <tr><td>Reliability</td><td>Acknowledgements and retransmission</td><td>None</td></tr>
+      <tr><td>Ordering</td><td>Guaranteed</td><td>Not guaranteed</td></tr>
+      <tr><td>Speed</td><td>Slower</td><td>Faster</td></tr>
+      <tr><td>Used by</td><td>Web, email, file transfer</td><td>DNS, video calls, gaming</td></tr>
+    </table>
+  </section>
+
+  <section id="log">
+    <h2>Live Server Request Log</h2>
+    <p>The last requests the Python server handled. It refreshes every 3 seconds.</p>
+    <table>
+      <thead><tr><th>Time</th><th>Client</th><th>Method</th><th>Path</th><th>Status</th></tr></thead>
+      <tbody id="logBody"></tbody>
+    </table>
+  </section>
+
+</main>
+
+<footer>Served by a Python web server at 127.0.0.1:8000</footer>
+<script src="script.js"></script>
+</body>
+</html>

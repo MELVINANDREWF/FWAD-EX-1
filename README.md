@@ -39,9 +39,13 @@ Start the server script and check for errors.
 Step 10:
 Open a browser and navigate to http://127.0.0.1:8000 (or the assigned port).
 
-PROGRAM:
+PROGRAM: FILES ATTACHED:
+
 
 OUTPUT:
+
+<img width="1917" height="1032" alt="Screenshot 2026-11-24 085518" src="https://github.com/user-attachments/assets/7bd9c5df-ed2b-4ebc-9642-c775bed7ed30" />
+
 
 RESULT:
 

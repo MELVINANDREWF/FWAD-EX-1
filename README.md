@@ -44,7 +44,8 @@ PROGRAM: FILES ATTACHED:
 
 OUTPUT:
 
-<img width="1917" height="1032" alt="Screenshot 2026-11-24 085518" src="https://github.com/user-attachments/assets/7bd9c5df-ed2b-4ebc-9642-c775bed7ed30" />
+<img width="1897" height="1032" alt="Screenshot 2026-11-27 161728" src="https://github.com/user-attachments/assets/fc624208-ad52-4f53-bff9-1ed24c95e27a" />
+
 
 
 RESULT:

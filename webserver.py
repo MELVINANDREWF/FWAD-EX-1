@@ -252,6 +252,8 @@ if __name__ == "__main__":
     os.makedirs(os.path.join(BASE, "images"), exist_ok=True)
     server = ThreadingHTTPServer((HOST, PORT), Handler)
     print("=" * 58)
+    print("Web Server Started!")
+    print("Open http://localhost:8000")
     print(" TCP/IP Protocol Suite - Advanced Web Server")
     print(f" Register No : {REG_NO}")
     print(f" Name        : {NAME}")
